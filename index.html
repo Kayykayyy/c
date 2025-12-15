@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Francheska claire velez vargas</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 30px; 
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            width: 420px;
+            min-height: 250px;
+            overflow: hidden; 
+        }
+
+        h1, h2 {
+            opacity: 0;
+            animation: fadeIn 0.8s forwards;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        h2 {
+            height: 30px;
+            margin-bottom: 25px;
+            color: #555;
+            animation-delay: 0.5s;
+        }
+
+        .buttons {
+            position: relative;
+            width: 100%;
+            height: 120px;
+        }
+
+        button {
+            position: absolute;
+            border: none;
+            padding: 12px 28px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #yesBtn {
+            background-color: #ff6b6b;
+            color: white;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .noBtn {
+            background-color: #e0e0e0;
+            color: #333;
+            left: 50%;
+            top: 60px;
+            transform: translateX(-50%);
+        }
+
+        .sorry {
+            font-size: 18px; 
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-top: 30px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            text-align: left;
+            line-height: 1.4; 
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            max-height: 400px; 
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="card" id="card">
+    <h1 id="question">Did I offend you earlier?</h1>
+    <h2 id="response"></h2>
+
+    <div class="buttons" id="buttonArea">
+        <button id="yesBtn" onclick="yesClick()">Yes</button>
+        <button class="noBtn" id="noBtn" onclick="noClick()">No</button>
+    </div>
+</div>
+
+<script>
+    let scale = 1;
+    let moved = false;
+
+    function noClick() {
+        const response = document.getElementById("response");
+        response.textContent = "Sure ka?";
+        response.style.animation = "fadeIn 0.5s forwards";
+
+        
+        scale += 0.2;
+        document.getElementById("yesBtn").style.transform =
+            `translateX(-50%) scale(${scale})`;
+
+        const noBtn = document.getElementById("noBtn");
+        const area = document.getElementById("buttonArea");
+
+        if (!moved) {
+            noBtn.style.transform = "none";
+            moved = true;
+        }
+
+        const maxX = area.clientWidth - noBtn.offsetWidth;
+        const maxY = area.clientHeight - noBtn.offsetHeight;
+
+        noBtn.style.left = Math.random() * maxX + "px";
+        noBtn.style.top = Math.random() * maxY + "px";
+    }
+
+    function yesClick() {
+        const card = document.getElementById("card");
+        card.innerHTML = '<div class="sorry">Sorry wag mo na tanungin bakit napansin ku lang iba yung ano mo kanina, like anu basta hirap talaga aku sa language. Sorry ah if may nasabi man aku baka di mu kami pansinin bukas, aku lang pala, nandamay pa eh nu. Piro bawi nalang aku libre kita bukas. wag mu na sabihin tu sa kanila baka issue pa tayu HSHAHSA</div>';
+    }
+</script>
+
+</body>
+</html>
